@@ -1,4 +1,4 @@
-#### Wireless AP configuration for Raspberry Pi (Raspbian)
+#### Wireless AP configuration for Raspberry Pi
 Required packages
 ~~~
 # IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
