@@ -36,7 +36,7 @@ Server side
 $ raspivid -t 99999 -o - | nc <CLIENT_IP_ADDRESS> 5001
 ~~~
 ================================
-#### MJPEG-streamer
+#### MJPEG-streamer (not working)
 ~~~
 $ tar xvzf mjpg-streamer-r63.tar.gz
 $ cd mjpg-streamer-r63
@@ -56,7 +56,7 @@ Jpeg images directory:
 ~~~
 $ mkdir ~/stream
 ~~~
-Camera device ``/dev/video0`` (put into ``/etc/rc.local`` to make it run on every boot):
+Enable camera device ``/dev/video0`` (put into ``/etc/rc.local`` to make it run on every boot):
 ~~~
 $ sudo modprobe bcm2835-v4l2
 ~~~
