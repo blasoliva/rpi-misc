@@ -37,7 +37,7 @@ Server side
 $ raspivid -t 99999 -o - | nc <CLIENT_IP_ADDRESS> 5001
 ~~~
 ================================
-#### MJPEG-streamer (not working)
+#### MJPEG-streamer
 ~~~
 $ tar xvzf mjpg-streamer-r63.tar.gz
 $ cd mjpg-streamer-r63
@@ -56,7 +56,7 @@ Create ``LD_LIBRARY_PATH`` environment variable (add to ``.bashrc`` or ``.profil
 ~~~
 $ export LD_LIBRARY_PATH=/usr/local/bin/
 ~~~
-Enable camera device ``/dev/video0`` (put into ``/etc/rc.local`` to make it run on every boot):
+Enable camera device ``/dev/video0`` (add bcm2835-v4l2 to ``/etc/modules`` to make it run on every boot):
 ~~~
 $ sudo modprobe bcm2835-v4l2
 ~~~
@@ -68,10 +68,15 @@ Start capture:
 ~~~
 $ mjpg_streamer -i "/usr/local/lib/input_uvc.so -y" -o "/usr/local/lib/output_http.so -w /usr/local/www"
 ~~~
+
+Some ``mjpg_streamer`` options:
 * ``-i``: uses input_uvc.so as input
 * ``-y``: enables YUYV format
 * ``-i``: output_http.so as output
 * ``-w``: directory for HTML files
+* ``-f``: frames per second
+* ``-r``: image size (W x H)
+* ``-b``: run in background
 
 Client browser:
 ~~~
