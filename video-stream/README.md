@@ -11,6 +11,7 @@
 * libjpeg8-dev
 * imagemagick
 * MJPEG-streamer
+* libv4l-dev
 * motion
 * vlc
 * mplayer
