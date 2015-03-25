@@ -45,16 +45,15 @@ $ make
 Copy ``mjpg_streamer, input_*.so`` and ``output_*.so`` to ``/usr/local/bin`` directory:
 ~~~
 $ cp mjpeg-streamer /usr/local/bin/
-$ find . -type f -name "input_*.so" | xargs cp -t /usr/local/bin/
-$ find . -type f -name "output_*.so" | xargs cp -t /usr/local/bin/
+$ find . -type f -name "input_*.so" | xargs cp -t /usr/local/lib/
+$ find . -type f -name "output_*.so" | xargs cp -t /usr/local/lib/
+~~~
+~~~
+$ cp -R www /usr/local/www
 ~~~
 Create ``LD_LIBRARY_PATH`` environment variable (add to ``.bashrc`` or ``.profile`` to set environment variable permanently):
 ~~~
 $ export LD_LIBRARY_PATH=/usr/local/bin/
-~~~
-Jpeg images directory:
-~~~
-$ mkdir ~/stream
 ~~~
 Enable camera device ``/dev/video0`` (put into ``/etc/rc.local`` to make it run on every boot):
 ~~~
@@ -66,13 +65,18 @@ $ ln -s /usr/include/linux/videodev2.h /usr/include/linux/videodev.h
 ~~~
 Start capture:
 ~~~
-$ raspistill -w 640 -h 480 -q 5 -o /home/pi/stream/pic.jpg -tl 100 -t 9999999 -th 0:0:0 &
-$ ./mjpg_streamer -i "input_uvc.so -f /home/pi/stream -n pic.jpg -f 20" -o "output_http.so -w ./www"
+$ mjpg_streamer -i "/usr/local/lib/input_uvc.so -y" -o "/usr/local/lib/output_http.so -w /usr/local/www"
 ~~~
+* ``-i``: uses input_uvc.so as input
+* ``-y``: enables YUYV format
+* ``-i``: output_http.so as output
+* ``-w``: directory for HTML files
+
 Client browser:
 ~~~
 http://<SERVER_IP_ADDRESS>:8080
 ~~~
+
 =======================
 #### motion
 Edit ``etc/motion/motion.conf``:
