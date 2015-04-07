@@ -38,6 +38,10 @@ $ raspivid -t 99999 -o - | nc <CLIENT_IP_ADDRESS> 5001
 ~~~
 ================================
 #### MJPEG-streamer
+Create a symbolic link of header:
+~~~
+$ ln -s /usr/include/linux/videodev2.h /usr/include/linux/videodev.h
+~~~
 ~~~
 $ tar xvzf mjpg-streamer-r63.tar.gz
 $ cd mjpg-streamer-r63
@@ -59,10 +63,6 @@ $ export LD_LIBRARY_PATH=/usr/local/bin/
 Enable camera device ``/dev/video0`` (add bcm2835-v4l2 to ``/etc/modules`` to make it run on every boot):
 ~~~
 $ sudo modprobe bcm2835-v4l2
-~~~
-Create a symbolic link of header:
-~~~
-$ ln -s /usr/include/linux/videodev2.h /usr/include/linux/videodev.h
 ~~~
 Start capture:
 ~~~
